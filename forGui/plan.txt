@@ -1,0 +1,17 @@
+
+Steps: 
+
+Save mp4
+1. create basic Menu window - start
+2. Take in file input from user
+3. create new folder, write to desktop
+4. save file to desktop folder
+
+cut up mp4
+5. User decision: do your video stills need to be cropped vertically and flipped horizontally?
+https://www.javatpoint.com/tkinter-application-to-switch-between-different-page-frames-in-python
+
+
+6. ^^alter code accordingly  
+7. use process.py to cut up the file into frames 
+
