@@ -4,7 +4,8 @@ import os
 from PIL import Image
 
 # takes file path and saves it
-filenamepath = sys.argv[1]
+# filenamepath = sys.argv[1]
+filenamepath = "/Users/fevroniavansickle/Desktop/EyeTrack" 
 video_file_list = os.listdir(filenamepath)
 videoname = ''
 print(video_file_list)

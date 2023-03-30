@@ -5,7 +5,7 @@ flow of project:
 - USE process.py to split video into frames
 - USE labelme to determine AOIs
 - USE compare_eye_anno.py to determine if hitting points fall within AOIs
-- USE anaconda to produce files for each participant
+- USE anaconda (?) to produce files for each participant
 
 Scripts explicitly mentioned:
 Process_video.py (2)
@@ -29,12 +29,4 @@ Output:
 - an image at each time stamp with depictions of the specified AOIs and the hitting point depicted as a green dot.
 
 Software needed:
-Anaconda
-Terminal (duh)
 Labelme
-
-Look into:
-Frozen in time? Binning things = doesn't need to be updated
-Look into binning things
-
-each participant folder ??
