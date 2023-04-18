@@ -26,8 +26,6 @@ from PIL import Image
 
 import csv
 
-
-
 #check if point is on surface of sphere
 def check_point_on_sphere(cx, cy, cz, point, r):
 
@@ -113,7 +111,6 @@ def get_hit_point_draw(combined_ray, linecolor):
 
 
 
-
 # transforms a point on sphere to a point in equirectangular
 # geo_w, geo_h are final projection width and length
 
@@ -135,7 +132,8 @@ def transform_to_equirectangular(point, geo_w, geo_h, color):
     return [geo_x_px, geo_y_px]
 
 
-dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
+# dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
+dirname = '/Users/fevroniavansickle/Desktop/Eyetrack/Data'
 
 print ("the folder has the name %s" % (dirname))
 
@@ -153,7 +151,7 @@ for par_id in participants_files:
                 os.mkdir(tobii_path + '_EYE2')
                 print('current in : '+tobii_path)
                 file_list = os.listdir(tobii_path)
-                # print('This folder has ', file_list, ' files.')
+                print('This folder has ', file_list, ' files.')
 
                 for file_name in file_list:
                     if 'xml' in file_name:

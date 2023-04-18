@@ -234,7 +234,11 @@ def length(v):
 
 def unit(v):
     """A unit vector in the direction of v"""
-    return v / length(v)
+    # return v / length(v)
+    lengthV = length(v)
+    newVector = Vector3.__div__(lengthV)
+    return newVector
+
 
 
 # ================================================================
@@ -255,7 +259,7 @@ if __name__ == '__main__':
     assert v1 - v2 == Vector3(-2, 0, 2)
     assert v1 * 3 == Vector3(3, 6, 9)
     assert 3 * v1 == Vector3(3, 6, 9)
-    assert v1/2.0 == Vector3(0.5, 1, 1.5)
+    assert v1/2 == Vector3(0.5, 1, 1.5)
     assert -v1 == Vector3(-1, -2, -3)
     assert v1[0] == 1 and v1[1] == 2 and v1[2] == 3
     assert list(v1) == [1, 2, 3]
@@ -298,4 +302,4 @@ if __name__ == '__main__':
     assert xRay.pos(1.0) == Point3(1, 0, 0)
     assert xRay.pos(2) == Point3(2, 0, 0)
 
-    print "Passed all tests"
+    print ("Passed all tests")

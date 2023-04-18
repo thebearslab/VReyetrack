@@ -1,7 +1,7 @@
 # moves and calibrates .mp4 video according to user specifications
 # goal: eye tracking analysis
 # author: Fevronia Van Sickle
-# version: 4/17/23
+# version: 4/18/23
 
 import os
 import shutil
@@ -14,7 +14,7 @@ import subprocess
 
 #Gui to analyse eye tracking 
 class RollOutMethodInterface(tk.Tk):
-    def __init__(self,newVideoPath=None, *args, **kwargs):
+    def __init__(self,newVideoPath=None, newDataPath=None, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
         #set window configurations
@@ -32,7 +32,7 @@ class RollOutMethodInterface(tk.Tk):
 
         self.frames = {}
         for F in (HomePage, CalibrationPage, GetterPage, TadaPage):
-            frame = F(container, self, newVideoPath=newVideoPath)
+            frame = F(container, self, newVideoPath=newVideoPath, newDataPath=newDataPath)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
@@ -52,15 +52,17 @@ class RollOutMethodInterface(tk.Tk):
 
 # first page
 class HomePage(tk.Frame):
-    def __init__(self, parent, controller, newVideoPath):
+    def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.newVideoPath = newVideoPath
+        self.newDataPath = newDataPath
         self.create_widgets()
 
     def create_widgets(self):
         
         self.title_label = ttk.Label(self, text="Home Page")
+
          # welcome text and file instructions
         welcomeLabel = tk.Label(self, text="Welcome!", font=(
             'Times New Roman', 27))
@@ -74,16 +76,28 @@ class HomePage(tk.Frame):
 
         # SELECT file
         selectFileButton = tk.Button(
-            self, text="Select File", command=self.selectVideoFile)
+            self, text="Select .mp4 File", command=self.selectVideoFile)
         # selectFileButton.place(x=20, y=120)
         selectFileButton.pack(side='top', anchor='w', pady = 20, padx=10)
 
-        instructionLabel2 = tk.Label(self, text="Your video will appear inside the 'Eyetrack' folder on your desktop.", font=(
+        #get eyetrack data
+        instructionLabel3 = tk.Label(self, text="Please select .xml eyetrack data file from the available directories.", font=(
+            'Times New Roman', 15))
+        # instructionLabel3.place(x=20, y=80)
+        instructionLabel3.pack(side='top', anchor='w', pady = 40, padx=10)
+
+        # SELECT file
+        selectFileButton = tk.Button(
+            self, text="Select .xml File", command=self.selectTXTFile)
+        # selectFileButton.place(x=20, y=120)
+        selectFileButton.pack(side='top', anchor='w', pady = 20, padx=10)
+
+        instructionLabel2 = tk.Label(self, text="Your video and data will appear inside the 'Eyetrack' folder on your desktop.", font=(
             'Times New Roman', 15))
         # instructionLabel2.place(x=20, y=180)
         instructionLabel2.pack(side='top', anchor='w', padx=10)
 
-        nextLabel = tk.Label(self, text="After you have made your selection, press 'Next' to continue.", font=(
+        nextLabel = tk.Label(self, text="After you have made your selections, press 'Next' to continue.", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
         nextLabel.pack(side='top', anchor='w', pady = 20, padx=10)
@@ -97,7 +111,7 @@ class HomePage(tk.Frame):
     def selectVideoFile(self):
 
         filetypes = (
-            ('video files', '*.mp4'),
+            ('video files', '*.xml'),
             ('All files', '*.*')
         )
 
@@ -113,10 +127,10 @@ class HomePage(tk.Frame):
         self.path = filePath
 
         # place videoFile into Eyetrack Folder
-        self.newFolder()
+        self.newEyetrackFolder()
 
     # adds new folder to user desktop and places video inside
-    def newFolder(self):
+    def newEyetrackFolder(self):
 
         # creates new folder
         homeDir = os.path.expanduser('~')
@@ -140,12 +154,62 @@ class HomePage(tk.Frame):
         print(newVideoPath)
         shutil.move(oldVideoPath, newVideoPath)
 
+    # select the directory holding the video file
+    def selectTXTFile(self):
+
+        filetypes = (
+            ('video files', '*.txt'),
+            ('All files', '*.*')
+        )
+
+        # open file dialog to select videoFile
+        filePath = filedialog.askopenfilename(
+            title='Open a file', initialdir='/', filetypes=filetypes)
+
+        # show what was selected
+        messagebox.showinfo(
+            title='Selected File',
+            message=filePath
+        )
+        self.path = filePath
+
+        # place dataFile into Eyetrack/data Folder
+        self.newDataFolder()
+
+    # adds new folder to Eyetrack folder and places dataFile inside
+    def newDataFolder(self):
+
+        # creates new folder
+        homeDir = os.path.expanduser('~')
+        dataFolder = "Data"
+        participantFolder = "001"
+        destinationFolder = "WSU_ED_001"
+
+        # creates an Eyetrack folder in the desktop
+        try:
+            os.makedirs(os.path.join(homeDir, "Desktop/Eyetrack", dataFolder, participantFolder, destinationFolder))
+        except:
+            # breaks from try/except
+            passed = True
+
+        # save path to videoFile
+        oldDataPath = self.path
+        print(oldDataPath)
+        # get video file name from path
+        dataFileName = os.path.basename(oldDataPath)
+        print(dataFileName)
+
+        newDataPath = os.path.join(homeDir, "Desktop/Eyetrack", dataFolder + "/" + participantFolder, dataFileName)
+        print(newDataPath)
+        shutil.move(oldDataPath, newDataPath)
+
 # second page
 class CalibrationPage(tk.Frame):
-    def __init__(self, parent, controller, newVideoPath):
+    def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.newVideoPath = newVideoPath
+        self.newDataPath = newDataPath
         self.create_widgets()
 
     def create_widgets(self):
@@ -225,18 +289,23 @@ class CalibrationPage(tk.Frame):
 
 # third page
 class GetterPage(tk.Frame):
-    def __init__(self, parent, controller, newVideoPath):
+    def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.newVideoPath = newVideoPath
+        self.newDataPath = newDataPath
         self.create_widgets()
 
     def create_widgets(self):
         print("do this")
 
         # start labelling button 
-        self.home_button = tk.Button(self, text="Start Annotating Frames", command=self.startLabelMe)
-        self.home_button.pack()
+        self.labelMeButton = tk.Button(self, text="Start Annotating Frames", command=self.startLabelMe)
+        self.labelMeButton.pack()
+
+        #calculate results button
+        self.showResultButton = tk.Button(self, text="Calculate results", command=self.giveTable)
+        self.showResultButton.pack()
 
         # go back button 
         self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
@@ -249,13 +318,17 @@ class GetterPage(tk.Frame):
     def startLabelMe(self):
         subprocess.Popen(['labelme'])
 
+    def giveTable(self):
+        os.system('python /Users/fevroniavansickle/Desktop/BEARS/VReyetrack/forGui/process.py')
+    
 
 # fourth page
 class TadaPage(tk.Frame):
-    def __init__(self, parent, controller, newVideoPath):
+    def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.newVideoPath = newVideoPath
+        self.newDataPath = newDataPath
         self.create_widgets()
 
     def create_widgets(self):
