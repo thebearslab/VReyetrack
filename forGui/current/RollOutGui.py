@@ -10,6 +10,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import class_process_video
+import subprocess
 
 #Gui to analyse eye tracking 
 class RollOutMethodInterface(tk.Tk):
@@ -30,7 +31,7 @@ class RollOutMethodInterface(tk.Tk):
         container.pack(side="top", fill="both", expand=True)
 
         self.frames = {}
-        for F in (HomePage, CalibrationPage):
+        for F in (HomePage, CalibrationPage, GetterPage, TadaPage):
             frame = F(container, self, newVideoPath=newVideoPath)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -191,8 +192,8 @@ class CalibrationPage(tk.Frame):
         self.processVideoButton.pack()
 
         #goes to next page
-        # self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(CalibrationPage))
-        # self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
+        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(GetterPage))
+        self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
 
     #control settings
     def controlSettings(self):
@@ -220,6 +221,46 @@ class CalibrationPage(tk.Frame):
         self.frames.captureAtInterval(interval)
         self.frames.cropFrames(cropBool)
         self.frames.flipFrames(flipBool)
+
+
+# third page
+class GetterPage(tk.Frame):
+    def __init__(self, parent, controller, newVideoPath):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        self.newVideoPath = newVideoPath
+        self.create_widgets()
+
+    def create_widgets(self):
+        print("do this")
+
+        # go back button 
+        self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
+        self.home_button.pack()
+
+        #next button
+        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(TadaPage))
+        self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
+
+
+# fourth page
+class TadaPage(tk.Frame):
+    def __init__(self, parent, controller, newVideoPath):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        self.newVideoPath = newVideoPath
+        self.create_widgets()
+
+    def create_widgets(self):
+        print("do this")
+
+        # go back button 
+        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(GetterPage))
+        # self.home_button.pack()
+
+        #home button
+        self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(HomePage))
+        self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
 
 
 appROM = RollOutMethodInterface()
