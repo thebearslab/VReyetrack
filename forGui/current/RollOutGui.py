@@ -234,6 +234,10 @@ class GetterPage(tk.Frame):
     def create_widgets(self):
         print("do this")
 
+        # start labelling button 
+        self.home_button = tk.Button(self, text="Start Annotating Frames", command=self.startLabelMe)
+        self.home_button.pack()
+
         # go back button 
         self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
         self.home_button.pack()
@@ -241,6 +245,9 @@ class GetterPage(tk.Frame):
         #next button
         self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(TadaPage))
         self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
+
+    def startLabelMe(self):
+        subprocess.Popen(['labelme'])
 
 
 # fourth page
@@ -253,10 +260,6 @@ class TadaPage(tk.Frame):
 
     def create_widgets(self):
         print("do this")
-
-        # go back button 
-        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(GetterPage))
-        # self.home_button.pack()
 
         #home button
         self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(HomePage))
