@@ -231,12 +231,12 @@ def length(v):
     """Length of vector"""
     return sqrt(v.dot(v))
 
-
+ 
 def unit(v):
     """A unit vector in the direction of v"""
     # return v / length(v)
     lengthV = length(v)
-    newVector = Vector3.__div__(lengthV)
+    newVector = Vector3.__div__(v, lengthV)
     return newVector
 
 

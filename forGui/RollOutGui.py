@@ -88,7 +88,7 @@ class HomePage(tk.Frame):
 
         # SELECT file
         selectFileButton = tk.Button(
-            self, text="Select .xml File", command=self.selectTXTFile)
+            self, text="Select .xml File", command=self.selectXMLFile)
         # selectFileButton.place(x=20, y=120)
         selectFileButton.pack(side='top', anchor='w', pady = 20, padx=10)
 
@@ -106,12 +106,11 @@ class HomePage(tk.Frame):
         self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(CalibrationPage))
         self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
 
-
     # select the directory holding the video file
     def selectVideoFile(self):
 
         filetypes = (
-            ('video files', '*.xml'),
+            ('video files', '*.mp4'),
             ('All files', '*.*')
         )
 
@@ -126,11 +125,12 @@ class HomePage(tk.Frame):
         )
         self.path = filePath
 
+        self.count = 0
         # place videoFile into Eyetrack Folder
-        self.newEyetrackFolder()
+        self.newEyetrackFolder(self.count)
 
     # adds new folder to user desktop and places video inside
-    def newEyetrackFolder(self):
+    def newEyetrackFolder(self, count):
 
         # creates new folder
         homeDir = os.path.expanduser('~')
@@ -141,7 +141,10 @@ class HomePage(tk.Frame):
             os.makedirs(os.path.join(homeDir, "Desktop", folder))
         except:
             # breaks from try/except
-            passed = True
+            folder = "Eyetrack" + str(count)
+            count += 1
+            self.newEyetrackFolder(count)
+
 
         # save path to videoFile
         oldVideoPath = self.path
@@ -155,10 +158,10 @@ class HomePage(tk.Frame):
         shutil.move(oldVideoPath, newVideoPath)
 
     # select the directory holding the video file
-    def selectTXTFile(self):
+    def selectXMLFile(self):
 
         filetypes = (
-            ('video files', '*.txt'),
+            ('video files', '*.xml'),
             ('All files', '*.*')
         )
 
