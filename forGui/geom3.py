@@ -231,12 +231,14 @@ def length(v):
     """Length of vector"""
     return sqrt(v.dot(v))
 
- 
+#this might return wrong vector if v is length is zero
 def unit(v):
     """A unit vector in the direction of v"""
     # return v / length(v)
     lengthV = length(v)
-    newVector = Vector3.__div__(v, lengthV)
+    newVector = v
+    if (lengthV != 0):
+        newVector = Vector3.__div__(v, lengthV)
     return newVector
 
 

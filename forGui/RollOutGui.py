@@ -10,6 +10,8 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import class_process_video
+# import procFirst
+# import compare_eye_anno
 import subprocess
 
 #Gui to analyse eye tracking 
@@ -300,14 +302,16 @@ class GetterPage(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        print("do this")
 
         # start labelling button 
         self.labelMeButton = tk.Button(self, text="Start Annotating Frames", command=self.startLabelMe)
         self.labelMeButton.pack()
 
         #calculate results button
-        self.showResultButton = tk.Button(self, text="Calculate results", command=self.giveTable)
+        self.showPointsButton = tk.Button(self, text="Calculate hitting points", command=self.giveTable)
+        self.showPointsButton.pack()
+
+        self.showResultButton = tk.Button(self, text="Calculate results", command=self.giveResults)
         self.showResultButton.pack()
 
         # go back button 
@@ -321,9 +325,24 @@ class GetterPage(tk.Frame):
     def startLabelMe(self):
         subprocess.Popen(['labelme'])
 
+    #process hitting points
     def giveTable(self):
-        os.system('python /Users/fevroniavansickle/Desktop/BEARS/VReyetrack/forGui/process.py')
-    
+        # os.system('python /Users/fevroniavansickle/Desktop/BEARS/VReyetrack/forGui/process.py')
+        # os.system('python procFirst.py')
+        print("this is giveTable")
+        # self.dirname = '/Users/fevroniavansickle/Desktop/Eyetrack/Data'
+        # self.points = process.Process(self.dirname)
+        # self.points.check_point_on_sphere(cx, cy, cz, point, r)
+        # self.points.getHittingPoint()
+        # self.points.unity_to_python_point(old)
+        # self.points.rotate_vec_by_quaternion(self,quat, vec)
+        # self.points.get_hit_point_draw(self, combined_ray, linecolor)
+        # self.points.transform_to_equirectangular(self, point, geo_w, geo_h, color)
+        # self.points.writeCSV()
+
+    def giveResults(self):
+        print("this is giveResults")
+
 
 # fourth page
 class TadaPage(tk.Frame):
@@ -340,7 +359,6 @@ class TadaPage(tk.Frame):
         #home button
         self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(HomePage))
         self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
-
 
 appROM = RollOutMethodInterface()
 appROM.mainloop()

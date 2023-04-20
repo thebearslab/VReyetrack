@@ -89,11 +89,11 @@ def convert_to_box(points):
 interval = 500000 # half second
 count = 0
 # datafile is the path of eye tracking file that has 2d hitting points
-datafile = ''
+datafile = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/WSU_ED_001_EYE2/hittingPoints.csv'
 # folder path that contains image and json of annotation
-annot_dir_curr = ''
+annot_dir_curr = '/Users/fevroniavansickle/Desktop/EyeTrack/crop'
 # folder to generate pics
-pics_folder_path = ''
+pics_folder_path = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/WSU_ED_001_EYE2'
 
 # we pause the video from start1 to end1 and start2 to end2
 # if you only pause the video once, just set start2 and end2 to 0
@@ -219,11 +219,6 @@ for key, value in time_eye_dict.items():
     ########
 curr_df = pd.DataFrame(result_scene_dict)
 curr_df.to_csv(datafile+'_result.csv', sep=',', encoding='utf-8')
-
-
-
-
-
 
 
 print('finish')
