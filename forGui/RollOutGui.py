@@ -10,8 +10,8 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import class_process_video
-# import procFirst
-# import compare_eye_anno
+import procFirst
+import compare_eye_anno
 import subprocess
 
 #Gui to analyse eye tracking 
@@ -328,7 +328,7 @@ class GetterPage(tk.Frame):
     #process hitting points
     def giveTable(self):
         # os.system('python /Users/fevroniavansickle/Desktop/BEARS/VReyetrack/forGui/process.py')
-        # os.system('python procFirst.py')
+        os.system('python procFirst.py')
         print("this is giveTable")
         # self.dirname = '/Users/fevroniavansickle/Desktop/Eyetrack/Data'
         # self.points = process.Process(self.dirname)
@@ -341,6 +341,7 @@ class GetterPage(tk.Frame):
         # self.points.writeCSV()
 
     def giveResults(self):
+        os.system('python compare_eye_anno.py')
         print("this is giveResults")
 
 
