@@ -24,7 +24,7 @@ result = pd.read_csv("/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Dat
 
 # participants = pd.read_csv('participants_label.csv', sep=',')
 # print(participants.head())
-
+participants = pd.DataFrame()
 ################################################
 # longest duration of time spent looking at the suspect
 ################################################
@@ -87,9 +87,10 @@ for par_id in participants_ids:
     if len(par_id) == 3:
         par_dict = {}
         par_dict['id'] = par_id
-        set = result['set'][np.where(result['id'] == int(par_id))[0][0]]
-        par_dict['set'] = set
-
+        #THIS THROWS KEYERROR########################################
+        setVal = result['setVal'][np.where(result['id'] == int(par_id))[0][0]]
+        par_dict['setVal'] = setVal
+        ############################################################3
         single_par_folder = os.listdir(data_dir_name + '/' + par_id)
         hit_folder_path = data_dir_name + '/' + par_id +'/'+ par_id+'_HIT'
         print(hit_folder_path)

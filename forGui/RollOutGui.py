@@ -10,7 +10,6 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import class_process_video
-# import compare_eye_anno
 import subprocess
 import sys
 
