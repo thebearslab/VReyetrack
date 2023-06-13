@@ -17,36 +17,13 @@ import re
 ################################################
 # global variables
 ################################################
-result = pd.read_csv("result.csv")
-interval = 500000 # half second
-scene_dict = {0:'p1', 1:'p2', 2:'scene1',  3:'scene2', 4:'scene3', 5:'scene4', 6:'scene5', 7:'scene6', 8:'scene7', 9:'scene8', 10:'scene9', 11:'scene10', 12:'scene11', 13:'scene12'}
-id_set_dict = {'A': 1, 'B':2}
-'''
-label_list = [ 'scene1_woman', 'scene1_man', 'scene1_gun', 'scene2_partner', 'scene2_mirror', 'scene2_suspect', 'scene2_gun', 'scene3_man', 'scene4_woman', 'scene4_man', 'scene4_gun', 'scene5_woman', 'scene5_man', 'scene6_man', 'scene6_gun', 'scene7_man', 'scene7_gun', 'scene8_woman', 'scene8_man', 'scene9_man', 'scene10_man', 'scene10_gun', 'scene11_man', 'scene12_man']
-temp = []
-temp.append('id')
-temp.append('set')
-temp.append('score')
+result = pd.read_csv("/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001_XYZ/result.csv")
+# interval = 500000 # half second NEEDS TO CHANGE
+# scene_dict = {0:'p1', 1:'p2', 2:'scene1'}
+# id_set_dict = {'A': 1, 'B':2}
 
-for key, value in scene_dict.items():
-    if key >1:
-        temp.append(value+'_pr')
-        temp.append(value+'_rt')
-for label in label_list:
-    temp.append(label+'_fix')
-    temp.append(label+'_per')
-    temp.append(label+'_ret')
-    for i in range(3):
-        temp.append(label + '_fix'+str(i))
-        temp.append(label + '_per'+str(i))
-        temp.append(label + '_ret'+str(i))
-
-print(temp)
-dfObj = pd.DataFrame([], columns = temp)
-dfObj.to_csv('participants_label.csv' , sep=',')
-'''
-participants = pd.read_csv('participants_label.csv', sep=',')
-print(participants.head())
+# participants = pd.read_csv('participants_label.csv', sep=',')
+# print(participants.head())
 
 ################################################
 # longest duration of time spent looking at the suspect
@@ -97,7 +74,7 @@ def returns_to_suspect(df, label, start, end):
 
 
 
-data_dir_name = '/Users/yuanguo/MHC/BEARS LAB/data/PUF WSU DATA 2'
+data_dir_name = '/Users/fevroniavansickle/Desktop/EyeTrack/Data'
 print ("the folder is %s" % (data_dir_name))
 
 tobii_eye_folder_name = 'HIT'

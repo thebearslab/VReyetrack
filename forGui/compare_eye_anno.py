@@ -21,7 +21,6 @@ import json
 from shapely.geometry import Point, Polygon
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from matplotlib import patches
 
 
@@ -86,22 +85,38 @@ def convert_to_box(points):
 ################################################
 # change variables here
 ################################################
+# interval = sys.argv[1] 
+# interval = float(interval)
+# interval = int(interval)
+
+# count = 0
+# # datafile is the path of eye tracking file that has 2d hitting points
+# datafile = sys.argv[2]
+# print ("the data file has the name %s" % (datafile))
+# # folder path that contains image and json of annotation
+# annot_dir_curr = sys.argv[3]
+# print ("the annot_dir_curr has the name %s" % (annot_dir_curr))
+# # folder to generate pics
+# pics_folder_path = sys.argv[4]
+# print ("the pics_folder_path has the name %s" % (pics_folder_path))
+
 interval = 500000 # half second
 count = 0
 # datafile is the path of eye tracking file that has 2d hitting points
-datafile = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/WSU_ED_001_EYE2/hittingPoints.csv'
+datafile = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001_XYZ/vr_data_20190321T162213 copy.csv'
 # folder path that contains image and json of annotation
-annot_dir_curr = '/Users/fevroniavansickle/Desktop/EyeTrack/crop'
+annot_dir_curr = '/Users/fevroniavansickle/Desktop/EyeTrack/flip'
 # folder to generate pics
-pics_folder_path = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/WSU_ED_001_EYE2'
+pics_folder_path = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001'
+
 
 # we pause the video from start1 to end1 and start2 to end2
 # if you only pause the video once, just set start2 and end2 to 0
 # if you didn't pause the video at all, go to "No Pause" at line 137 and follow the instructions
 df = {'start1':1, 'end1':11, 'start2':33.9, 'end2':34.9}
 
-if not os.path.exists(pics_folder_path + 'pics'):
-    os.makedirs(pics_folder_path + 'pics')
+if not os.path.exists(pics_folder_path + '_pics'):
+    os.makedirs(pics_folder_path + '_pics')
     print('creating pics folder...')
 arr = os.listdir()
 print('list all files in current folder: ', pics_folder_path)
@@ -154,17 +169,16 @@ for key, value in time_eye_dict.items():
     result_scene_dict['timestamp'].append(key)
     result_scene_dict['image'].append(num)
 
-
+    # prev = curr_img
 
     if os.path.exists(annot_dir_curr + '/' + curr_img+num + '.json'):
         curr_img += num
     else:
         curr_img = prev
 
-
     ##############  generating pics to check, delete it if you don't need
     flag_img = False
-    if os.path.exists(pics_folder_path + 'pics/'+curr_img+'.png') == False:
+    if os.path.exists(pics_folder_path + '_pics/'+curr_img+'.png') == False:
 
         flag_img = True
         plt.figure()
@@ -211,17 +225,15 @@ for key, value in time_eye_dict.items():
     ######## generating pics to check, delete it if you don't need
     if flag_img ==True:
 
-        plt.savefig(pics_folder_path + 'pics/' +curr_img + '.png')
+        plt.savefig(pics_folder_path + '_pics/' +curr_img + '.png')
         plt.close(fig)
         plt.cla()
         plt.close('all')
         count += 1
     ########
+# print(result_scene_dict)
 curr_df = pd.DataFrame(result_scene_dict)
 curr_df.to_csv(datafile+'_result.csv', sep=',', encoding='utf-8')
 
 
 print('finish')
-
-
-
