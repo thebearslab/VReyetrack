@@ -65,15 +65,30 @@ class HomePage(tk.Frame):
         self.title_label = ttk.Label(self, text="Home Page")
 
          # welcome text and file instructions
-        welcomeLabel = tk.Label(self, text="Welcome!", font=(
+        welcomeLabel = tk.Label(self, text="Welcome to the Roll Out Method!", font=(
             'Times New Roman', 27))
         # welcomeLabel.place(x=20, y=20)
         welcomeLabel.pack(side='top', anchor='w', pady = 20, padx=10)
 
-        nextLabel = tk.Label(self, text="~general overview and welcome goes here~", font=(
+        overviewLabel1 = tk.Label(self, text="This GUI will walk you through all steps of the Roll Out Method.", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
-        nextLabel.pack(side='top', anchor='w', pady = 20, padx=10)
+        overviewLabel1.pack(side='top', anchor='w', pady = 20, padx=10)
+
+        overviewLabel2 = tk.Label(self, text="You will be asked to upload a 360 video and correpsonding eye tracking data for one participant.", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel2.pack(side='top', anchor='w', pady = 20, padx=10)
+
+        overviewLabel3 = tk.Label(self, text=" On the slides that follow you will select settings for your analysis, annotate video frames, \n and recieve final analysis results.", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel3.pack(side='top', anchor='w', pady = 20, padx=10)
+
+        overviewLabel4 = tk.Label(self, text="Please refer back to the paper and/or files in the repository to clarify any questions you may have.", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel4.pack(side='top', anchor='w', pady = 20, padx=10)
 
         #goes to next page
         self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(CalibrationPage))
@@ -313,10 +328,30 @@ class CreateLabelsPage(tk.Frame):
             'Times New Roman', 27))
         choicesLabel.pack(side='top', anchor='w', pady = 20, padx=10)
 
-        instructionLabel2 = tk.Label(self, text="Annotate video frames to determine Areas of Interest. \n Save annotated frames to the folder of the frames you want to analyze; choose either 'frames', 'crop', or 'flip'.", font=(
+        instructionLabel2 = tk.Label(self, text="Annotate video frames to determine Areas of Interest.", font=(
             'Times New Roman', 15))
         # instructionLabel2.place(x=20, y=180)
-        instructionLabel2.pack(side='top', anchor='w')
+        instructionLabel2.pack(side='top', anchor='w', pady = 20, padx=10)
+
+        instructionLabel3 = tk.Label(self, text="Save annotated frames to the folder of the frames you want to analyze; choose either 'frames', 'crop', or 'flip'.", font=(
+            'Times New Roman', 15))
+        # instructionLabel2.place(x=20, y=180)
+        instructionLabel3.pack(side='top', anchor='w', pady = 10, padx=10)
+
+        instructionLabel4 = tk.Label(self, text="Return to this GUI once done annotating.", font=(
+            'Times New Roman', 15))
+        # instructionLabel2.place(x=20, y=180)
+        instructionLabel4.pack(side='top', anchor='w', pady = 10, padx=10)
+
+        instructionLabel5 = tk.Label(self, text="If you accidentally close the GUI, simply navigate back to this page and continue.", font=(
+            'Times New Roman', 15))
+        # instructionLabel2.place(x=20, y=180)
+        instructionLabel5.pack(side='top', anchor='w', pady = 10, padx=10)
+
+        instructionLabel6 = tk.Label(self, text="You do not need to re-annotate your slides.", font=(
+            'Times New Roman', 15))
+        # instructionLabel2.place(x=20, y=180)
+        instructionLabel6.pack(side='top', anchor='w', pady = 10, padx=10)
 
         # start labelling button 
         self.labelMeButton = tk.Button(self, text="Annotate Frames", command=self.startLabelMe)
@@ -414,7 +449,7 @@ class TadaPage(tk.Frame):
 
         # go back button 
         self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
-        self.home_button.pack(side='top', anchor='w', pady = 20, padx=10)
+        self.home_button.pack(side='top', anchor='w', pady = 10, padx=10)
 
         # #next button
         # self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(TadaPage))
