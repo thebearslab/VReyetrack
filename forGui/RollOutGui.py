@@ -528,7 +528,7 @@ class TadaPage(tk.Frame):
         
 
     def giveResults(self):
-        print("this is giveResults")
+        print("complete")
 
         #interval
         interval = self.interval.get()
