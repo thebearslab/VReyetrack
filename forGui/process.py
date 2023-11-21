@@ -27,7 +27,6 @@ from PIL import Image
 import csv
 
 
-
 #check if point is on surface of sphere
 def check_point_on_sphere(cx, cy, cz, point, r):
 
@@ -136,10 +135,9 @@ def transform_to_equirectangular(point, geo_w, geo_h, color):
 
 
 dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
-
 print ("the folder has the name %s" % (dirname))
 
-tobii_folder_name = 'WSU_ED'
+tobii_folder_name = 'Eye_Data'
 tobii_path = ''
 participants_files = os.listdir(dirname)
 for par_id in participants_files:
@@ -150,14 +148,14 @@ for par_id in participants_files:
             if tobii_folder_name in single_file:
                 tobii_path = dirname  + '/' + par_id + '/' + single_file
                 # create folder for coordinate on 2d image
-                os.mkdir(tobii_path + '_EYE2')
+                os.mkdir(tobii_path + '_XYZ')
                 print('current in : '+tobii_path)
                 file_list = os.listdir(tobii_path)
                 # print('This folder has ', file_list, ' files.')
 
                 for file_name in file_list:
                     if 'xml' in file_name:
-                        f = open(tobii_path +'_EYE2'+ '/'+file_name.split('.')[0] + '.csv', 'w',  encoding="utf-8")
+                        f = open(tobii_path +'_XYZ'+ '/'+file_name.split('.')[0] + '.csv', 'w',  encoding="utf-8")
                         writer = csv.writer(f)
 
                         tree = ET.parse(tobii_path + '/'+file_name)
@@ -179,7 +177,6 @@ for par_id in participants_files:
                         f.close()
 
 print('All finish')
-
 
 
 
