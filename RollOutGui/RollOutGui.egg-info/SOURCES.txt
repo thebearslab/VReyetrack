@@ -1,0 +1,17 @@
+LICENSE.txt
+README.md
+setup.py
+RollOutGui/RollOutGui.egg-info/PKG-INFO
+RollOutGui/RollOutGui.egg-info/SOURCES.txt
+RollOutGui/RollOutGui.egg-info/dependency_links.txt
+RollOutGui/RollOutGui.egg-info/entry_points.txt
+RollOutGui/RollOutGui.egg-info/requires.txt
+RollOutGui/RollOutGui.egg-info/top_level.txt
+RollOutGui/src/__init__.py
+RollOutGui/src/class_process_video.py
+RollOutGui/src/compare_eye_anno.py
+RollOutGui/src/geom3.py
+RollOutGui/src/main.py
+RollOutGui/src/process.py
+RollOutGui/src/rolloutmethod.py
+RollOutGui/src/sphere.py

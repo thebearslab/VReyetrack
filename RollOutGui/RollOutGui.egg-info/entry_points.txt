@@ -1,0 +1,2 @@
+[console_scripts]
+rolloutmethod = src.main:main

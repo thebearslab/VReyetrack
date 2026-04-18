@@ -1,0 +1,11 @@
+labelme
+pandas>=2
+tk
+matplotlib>=3.5
+opencv-python>=4.5
+shapely>=2
+Pillow>=9.5
+
+[dev]
+pytest>=7.0
+twine>=4.0.2

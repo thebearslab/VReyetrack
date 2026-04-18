@@ -1,112 +1,43 @@
-# eyetracking_data_analyze
-This project is developed for analyzing tobii(embeded in HTC vive) eye tracking data. 
+# Roll Out Method (Mac Version)
 
-We want to know in each frame if participant was looking at specific area in 360 video. In unity, 360 video is projected on the surface of a sphere. The first thing we do is to find hitting point on the sphere according to combined gaze direction. Then we convert the point on 3d sphere to point on equirectangular picture. Therefore we are able to know if that point falls in specific area.
+## First Time Users:
 
-## find intersection of vector and a sphere
-```
-l = sphere.centre - ray.start # C-O
-tca = dot(ray.dir, l) # tca
-discrim = tca * tca - dot(l, l) + self.radius * self.radius
-if discrim >= 0:
-    thc = sqrt(discrim)
-    t0 = (tca - thc)
-    t1 = (tca + thc)
-    if t0 < t1:
-        result = t1
-    else:
-        result = t0
-    x = ray.start.x + ray.dir.dx * result
-    y = ray.start.y + ray.dir.dy * result
-    z = ray.start.z + ray.dir.dz * result
-```
-
-## convert point(x,y,z) on 3D sphere(360 video) to 2D equirectangular image
-```
-theta_value = math.atan2(y, x)
-phi_value = math.acos(z)
-if phi_value <0 :
-    phi_value += np.pi
-if theta_value <0 :
-    theta_value += 2*np.pi
-
-# project back to equirectangular
-geo_x_px = (theta_value / (2 * np.pi)) * image_w
-geo_y_px = (phi_value / (np.pi)) * image_h
-```
-## Annotate video frames
-use [labelme](https://github.com/wkentaro/labelme) to annotate equirectangular images.   
-save generated json files for each image under the same folder.  
-
-## Packages
-Download and put geom3.py into the folder from https://github.com/phire/Python-Ray-tracer
-
-## command
-```
-# convert 360 video to image frams, crop, flipt each image 
-python process_video.py /.../scene5  # with mp4 file in this folder
-
-# convert tobii xml to csv which only has time stamp and hitting point coordinates in 2d. 
-python process.py /.../data    #see data folder structure 
-
-# check in each time stamp where the participants were looking at
-# compare hitting point in 2D with annotated 2D images
-python analyze.py
-
-# combine all data into a csv including reaction time, score, fixation of each scene and each participant
-python eye_gaze_processing.py 
-```
-
-## image data folder structure
-```
-images
-├── demo1                   
-│   ├── scene1  
-│       ├── frames
-│       ├── crops
-│       ├── flip
-│           ├──image00.jpg
-│           ├──image00.json
-│           ├──image01.jpg
-│           ├──image01.json
-│       ├── video.mp4
-│   ├── scene2          
-│   └── ...  
-├── demo2                    
-│   ├── scene1          
-│   ├── scene2          
-│   └── ...                
-|───readme
-
-```
-
-## data folder structure
-
-```
-data
-├── 001                   
-│   ├── PUF_IAT_001     #survey data  
-│       ├── ..
-│   ├── WSU_ED_001      #raw eye tracking data by Tobii
-│       ├── vr_data_2019XXXXTXXXXXX.csv
-│       ├── vr_data_2019XXXXTXXXXXX.csv
-│       ├── ...
-│   ├── WSU_ED_001_EYE      #processed eye tracking data created by process.py 
-│       ├── vr_data_2019XXXXTXXXXXX.csv
-│       ├── vr_data_2019XXXXTXXXXXX.csv
-│       ├── ...
-│   ├── 001_HIT             #info about which object they were looking at, created by analyze.py
-│       ├── vr_data_2019XXXXTXXXXXX_scene1.csv
-│       ├── vr_data_2019XXXXTXXXXXX_scene2.csv
-│       ├── ...
-│   └── WSU_HRV_001.xlsx  #heart rate data
-│   └── WSU_PR_001.txt    #performance data
-│   └── WSU_RT_001.txt    #reaction time data
-│   └── WSU_SR_001.mp4    #recording video
-├── 002                    
-│   ├── ...                       
-|───003
-
-```
+1. Click on the following link: github.com/FevroniaVanSickle/VReyetrack
+    * Click the green “code” button
+    * Then click the “Download ZIP” tab to download the roll out method package
+    * This will download a folder called “VReyetrack-main,” which will contain all the needed scripts for the roll out method
+    * Save this folder to your desktop for easy access
+2. Open the VReyetrack-main folder and find the folder within called “dist”
+    * Right click on the “dist” folder and then click the “New Terminal at Folder” tab (this will open a “terminal” window)
+    * In the terminal window type pip3 install RollOutGui-0.0.1-py3-none-any.whl and press enter
+    * Right click on the VReyetrack-main folder and then click the “New Terminal at Folder” tab (this will open a second “terminal” window)
+    * In this second terminal window type rolloutmethod and press enter
+    * The Graphic User Interface (GUI) for the Roll Out Method will appear on the screen 
+3. Follow directions on the interface 
+    * If you have previously annotated your slides, you need not complete the labelme step as long as you save your annotated slides to the appropriate frame folder
+4. All results should now be in folders within Eyetrack/Data
 
 
+## Returning Users:
+
+1. Open Terminal (on a Mac) or Command Prompt (on a PC)
+2. Navigate to VReyetrack-main
+3. Type rolloutmethod and press enter
+4. User interface will appear on screen
+5. Follow directions on the screen
+
+
+### Envronment Setup
+#### Requirements: 
+* python3 (must include pip3)
+
+#### Included Packages: 
+* labelme
+* pandas
+* tk
+* matplotlib
+* opencv-python 
+* shapely 
+* pillow
+
+### Link to instructions document: <https://docs.google.com/document/d/1bx32250pn8L2UrKl5SDpn94hTcv2XlwYR-TV357_eDY/edit?usp=sharing>

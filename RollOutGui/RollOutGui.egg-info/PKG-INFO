@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: RollOutGui
+Version: 0.0.1
+Summary: A graphical user interface that analyzes eye movements per video frame
+Home-page: https://github.com/thebearslab/VReyetrack
+Author: FevroniaVanSickle
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE.txt
+
+# Roll Out Method (Mac Version)
+
+## First Time Users:
+
+1. Click on the following link: github.com/FevroniaVanSickle/VReyetrack
+    * Click the green “code” button
+    * Then click the “Download ZIP” tab to download the roll out method package
+    * This will download a folder called “VReyetrack-main,” which will contain all the needed scripts for the roll out method
+    * Save this folder to your desktop for easy access
+2. Open the VReyetrack-main folder and find the folder within called “dist”
+    * Right click on the “dist” folder and then click the “New Terminal at Folder” tab (this will open a “terminal” window)
+    * In the terminal window type pip3 install RollOutGui-0.0.1-py3-none-any.whl and press enter
+    * Right click on the VReyetrack-main folder and then click the “New Terminal at Folder” tab (this will open a second “terminal” window)
+    * In this second terminal window type rolloutmethod and press enter
+    * The Graphic User Interface (GUI) for the Roll Out Method will appear on the screen 
+3. Follow directions on the interface 
+    * If you have previously annotated your slides, you need not complete the labelme step as long as you save your annotated slides to the appropriate frame folder
+4. All results should now be in folders within Eyetrack/Data
+
+
+## Returning Users:
+
+1. Open Terminal (on a Mac) or Command Prompt (on a PC)
+2. Navigate to VReyetrack-main
+3. Type rolloutmethod and press enter
+4. User interface will appear on screen
+5. Follow directions on the screen
+
+
+### Envronment Setup
+#### Requirements: 
+* python3 (must include pip3)
+
+#### Included Packages: 
+* labelme
+* pandas
+* tk
+* matplotlib
+* opencv-python 
+* shapely 
+* pillow
+
+### Link to instructions document: <https://docs.google.com/document/d/1bx32250pn8L2UrKl5SDpn94hTcv2XlwYR-TV357_eDY/edit?usp=sharing>

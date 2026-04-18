@@ -1,6 +1,7 @@
 
 
-from geom3 import dot
+# from geom3 import dot
+from src.geom3 import *
 from math import sqrt
 
 
