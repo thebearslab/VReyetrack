@@ -12,6 +12,7 @@ from tkinter import messagebox
 from tkinter import filedialog
 import subprocess
 from . import class_process_video, process, compare_eye_anno
+import webbrowser
 
 
 
@@ -62,7 +63,7 @@ class    Welcome_Page(tk.Frame):
         self.title_label = ttk.Label(self, text="Home Page")
 
          # welcome text and file instructions
-        welcomeLabel = tk.Label(self, text="Welcome to the Graphic User Interface for the Roll Out Method!", font=(
+        welcomeLabel = tk.Label(self, text="Welcome to the Graphic :)User Interface for the Roll Out Method!", font=(
             'Times New Roman', 25))
         # welcomeLabel.place(x=20, y=20)
         welcomeLabel.pack(anchor='w', pady = 20, padx=10)
@@ -336,21 +337,65 @@ class Step_2_Page(tk.Frame):
             'Times New Roman', 25))
         choicesLabel.pack(  anchor='w', pady = 20, padx=10)
 
-        instructionLabel2 = tk.Label(self, text="To determine AOIs, the roll out method uses a program called “labelme” created by Wada (2016)*", font=(
+        instructionLabel2 = tk.Label(self, text="To determine AOIs, the roll out method uses two programs: “labelme” created by Wada (2016)* or “Pose Detection” created by Kaylee (2026)", font=(
             'Times New Roman', 15))
         instructionLabel2.pack(anchor='w', padx=10)
 
-        instructionLabel2_1 = tk.Label(self, text="To open labelme, click the button below", font=(
+        instructionLabel2_1 = tk.Label(self, text="To open Pose Detection, click the button below", font=(
             'Times New Roman', 15))
-        instructionLabel2_1.pack(anchor='w',padx=10)
+        instructionLabel2_1.pack(anchor='w', padx=10)
+
+       # Pose Detection button 
+        self.labelMeButton = tk.Button(self, text="Generate Detection", command=self.startPoseDetection)
+        self.labelMeButton.pack(anchor='w', pady = 10, padx=10) 
+
+        instructionLabel3 = tk.Label(self, text="Pose Detection Instructions:", font=(
+            'Times New Roman', 15))
+        instructionLabel3.pack(anchor='w', padx=10) 
+
+        instructionLabel3_1 = tk.Label(self, text="1. Once opened on your browser, please press the grey play button and on the right side a test image should pop up.", font=(
+            'Times New Roman', 15))
+        instructionLabel3_1.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel3_2 = tk.Label(self, text="2. Scroll down on the right side until you see a 'Choose File' button, click on it.", font=(
+            'Times New Roman', 15))
+        instructionLabel3_2.pack(  anchor='w', padx=10)
+
+        instructionLabel3_2_a = tk.Label(self, text="   a. Find the EyeTrack folder on your desktop", font=(
+            'Times New Roman', 15))
+        instructionLabel3_2_a.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel3_2_b = tk.Label(self, text="   b. Select the “crop” folder if you opted to have your video stills cropped", font=(
+            'Times New Roman', 15))
+        instructionLabel3_2_b.pack(  anchor='w', padx=10)
+
+        instructionLabel3_2_c = tk.Label(self, text="   c. Select the “frames” folder if you did not opt to have your video stills cropped", font=(
+            'Times New Roman', 15))
+        instructionLabel3_2_c.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel3_3 = tk.Label(self, text="3. Now the frame should be automatically populated with the pose detection. Repeat the previous step with the rest of the frames.", font=(
+                    'Times New Roman', 15))
+        instructionLabel3_3.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel3_4 = tk.Label(self, text="4. For right now, you have to screenshot the image to retrieve it.", font=(
+            'Times New Roman', 15))
+        instructionLabel3_4.pack(  anchor='w', pady =5, padx=10)
+        
+        separationLabel = tk.Label(self, text="--------------------------------------------------------------------------------", font=(
+            'Times New Roman', 25))
+        separationLabel.pack(  anchor='w', pady = 20, padx=10) 
+
+        instructionLabel2_2 = tk.Label(self, text="To open labelme, click the button below", font=(
+            'Times New Roman', 15))
+        instructionLabel2_2.pack(anchor='w',padx=10)
 
         # start labelling button 
         self.labelMeButton = tk.Button(self, text="Annotate Frames", command=self.startLabelMe)
         self.labelMeButton.pack(anchor='w', pady = 10, padx=10)
 
-        instructionLabel3 = tk.Label(self, text="Labelme Instructions:", font=(
+        instructionLabel4 = tk.Label(self, text="Labelme Instructions:", font=(
             'Times New Roman', 15))
-        instructionLabel3.pack(anchor='w', padx=10)
+        instructionLabel4.pack(anchor='w', padx=10)
 
         instructionLabel4_1 = tk.Label(self, text="1. Click the “Open Dir” button on the top left of the labelme GUI", font=(
             'Times New Roman', 15))
@@ -372,7 +417,7 @@ class Step_2_Page(tk.Frame):
             'Times New Roman', 15))
         instructionLabel4_3.pack(  anchor='w', padx=10)
 
-        instructionLabel4_4 = tk.Label(self, text="4. Draw a polygon around the AOI using mouse.When you close the polygon you will be prompted to provide a label", font=(
+        instructionLabel4_4 = tk.Label(self, text="4. Draw a polygon around the AOI using mouse. When you close the polygon you will be prompted to provide a label", font=(
             'Times New Roman', 15))
         instructionLabel4_4.pack(  anchor='w', pady =5, padx=10)
 
@@ -399,6 +444,13 @@ class Step_2_Page(tk.Frame):
         instructionLabel6 = tk.Label(self, text="*available directly on github at https://github.com/wkentaro/labelme", font=(
                     'Times New Roman', 15))
         instructionLabel6.pack(  anchor='w', padx=10)
+
+        instructionLabel7 = tk.Label(self, text="*available directly on github at https://github.com/thebearslab/VReyetrack", font=(
+                    'Times New Roman', 15))
+        instructionLabel7.pack(  anchor='w', padx=10)
+
+    def startPoseDetection(self):
+        webbrowser.open('https://editor.p5js.org/clark32k/sketches/T53QprREY')
 
     def startLabelMe(self):
         subprocess.Popen(['labelme'])

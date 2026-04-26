@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: RollOutGui
 Version: 0.0.1
 Summary: A graphical user interface that analyzes eye movements per video frame
@@ -10,8 +10,28 @@ Classifier: Programming Language :: Python :: 3.11
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
-Provides-Extra: dev
 License-File: LICENSE.txt
+Requires-Dist: labelme
+Requires-Dist: pandas>=2
+Requires-Dist: tk
+Requires-Dist: matplotlib>=3.5
+Requires-Dist: opencv-python>=4.5
+Requires-Dist: shapely>=2
+Requires-Dist: Pillow>=9.5
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: twine>=4.0.2; extra == "dev"
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
 
 # Roll Out Method (Mac Version)
 
